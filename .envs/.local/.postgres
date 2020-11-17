@@ -5,3 +5,4 @@ POSTGRES_PORT=5432
 POSTGRES_DB=ecommerce
 POSTGRES_USER=ecommerce
 POSTGRES_PASSWORD=ecommerce
+POSTGRES_DB_TEST=ecommerce_test
