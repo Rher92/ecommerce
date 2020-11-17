@@ -10,10 +10,10 @@ echo "PostgreSQL started"
 
 
 echo "Making makemigartions at django"
-# python /usr/src/app/src/manage.py migrate
+python /usr/src/app/src/manage.py migrate
 
 echo "Making migrate at django"
-# python /usr/src/app/src/manage.py migrate
+python /usr/src/app/src/manage.py migrate
 
 echo "Making runserver at django"
 python /usr/src/app/src/manage.py runserver 0.0.0.0:8000
