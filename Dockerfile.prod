@@ -13,9 +13,11 @@ WORKDIR /usr/src/app
 COPY ./requirements /usr/src/app/requirements
 RUN pip install -r /usr/src/app/requirements/prod.txt
 
-COPY . /usr/src/app
+COPY ./src /usr/src/app
 
-RUN adduser -D muyser
-USER muyser
+RUN python manage.py collectstatic --noinput
 
-CMD gunicorn --bind 0.0.0.0:$PORT manage:app
+RUN adduser -D user
+USER user
+
+CMD gunicorn config.wsgi:application --bind 0.0.0.0:$PORT 
