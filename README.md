@@ -72,7 +72,8 @@ in order to run all commands below you shell must be on ../ecommerce
  
 ### Path to play:
 
-| enviroment | route |
-| ------ | ------ |
-| local enviroment | http://127.0.0.1:8000/ |
-| pythonanywhere | http://rher92.pythonanywhere.com/ |
+| enviroment | route | user | password |
+| ------ | ------ | ------ | ------ |
+| local enviroment | http://127.0.0.1:8000/ |------ | ------ |
+| pythonanywhere | http://rher92.pythonanywhere.com/ | pako | pako1234 |
+| Heroku | https://mysterious-oasis-08740.herokuapp.com/ | admin | admin1234 |
