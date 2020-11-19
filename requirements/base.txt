@@ -8,3 +8,5 @@ djangorestframework_simplejwt==4.6.0
 
 #Others
 requests==2.25.0
+whitenoise==5.2.0
+
