@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'jwt_auth',
     'products',
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +129,5 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=180),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
+
+DOLAR_BLUE_PRICE = 'https://www.dolarsi.com/api/api.php?type=valoresprincipales'
