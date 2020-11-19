@@ -6,3 +6,11 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = ['pk', 'name', 'price', 'stock']
+
+
+class ProductToOrderDetails(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ['pk', 'name', 'price']
+
+    
