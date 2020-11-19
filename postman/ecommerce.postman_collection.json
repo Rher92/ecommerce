@@ -1,0 +1,503 @@
+{
+	"info": {
+		"_postman_id": "37ca77ce-17a2-4653-ab3f-526e2205ebd5",
+		"name": "ecommerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "get token refresh and access",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a3fb598e-3149-4708-924b-77d440fcce2d",
+								"exec": [
+									"pm.environment.set(\"{{REFRESH_TOKEN}}\", \"variable_value\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "{{USERNAME}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{PASSWORD}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{HOST}}/api/token/",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"token",
+								""
+							]
+						},
+						"description": "through this method must get the refresh_toke and the access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "access token refreshing",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "refresh",
+									"value": "{{REFRESH_TOKEN}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{HOST}}/api/token/refresh/",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"token",
+								"refresh",
+								""
+							]
+						},
+						"description": "access token refreshing"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "retrieve all products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{HOST}}/api/products/",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"products",
+								""
+							]
+						},
+						"description": "retrieve all products created"
+					},
+					"response": []
+				},
+				{
+					"name": "create product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "manzana",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "12.56",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "34",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{HOST}}/api/products/",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"products",
+								""
+							]
+						},
+						"description": "retrieve all products created"
+					},
+					"response": []
+				},
+				{
+					"name": "retrieve a specific product",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{HOST}}/api/products/3",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"3"
+							]
+						},
+						"description": "retireve a specific product"
+					},
+					"response": []
+				},
+				{
+					"name": "delete product",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{HOST}}/api/products/5/",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"5",
+								""
+							]
+						},
+						"description": "delete a product"
+					},
+					"response": []
+				},
+				{
+					"name": "partial update ",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "stock",
+									"value": "555",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{HOST}}/api/products/3/",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"3",
+								""
+							]
+						},
+						"description": "update product\n"
+					},
+					"response": []
+				},
+				{
+					"name": "update product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "manzana",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{HOST}}/api/products/3/",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"3",
+								""
+							]
+						},
+						"description": "this update method require the name of the product"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "orders",
+			"item": [
+				{
+					"name": "create order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "product",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "23",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{HOST}}/api/orders/",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit and add item to order",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{ACCESS_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "product",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "4",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{HOST}}/api/orders/2/",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get order",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{HOST}}/api/orders/2/",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"2",
+								""
+							]
+						},
+						"description": "get order\n"
+					},
+					"response": []
+				},
+				{
+					"name": "delete order",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{ACCESS_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{HOST}}/api/orders/2/",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"2",
+								""
+							]
+						},
+						"description": "get order\n"
+					},
+					"response": []
+				},
+				{
+					"name": "get all orders",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{ACCESS_TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{HOST}}/api/orders/",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								""
+							]
+						},
+						"description": "get order\n"
+					},
+					"response": []
+				}
+			],
+			"description": "orders\n",
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
